@@ -90,28 +90,8 @@ El detector de caras utilizado fue xxx. Para utilizarlo se debe.... El código p
         //detector.adjustRect(r);
         rectangle(imagen, cv::Point(p.getXComienzo(), p.getYComienzo()), cv::Point(p.getXFin(), p.getYFin()), cv::Scalar(0, 255, 0), 2);
         circle(imagen, cv::Point(p.getXCentro(), p.getYCentro()), 3, cv::Scalar(0, 0, 255), 3);
+    }
 
-//Contadores:
-        //Si va desde arriba hacia abajo se le suma +1 al contador de entrantes
-        if(p.getYCentro()<200 && p.getYCentro() >210 && p.getXCentro() > 0 && p.getXCentro()<800){
-            cont = cont + 1;
-        }
-        //Si va desde abajo hacia arriba se le suma +1 al contador de salientes
-        if(p.getYCentro()>200 && p.getYCentro() <190 && p.getXCentro()> 0 && p.getXCentro() <800){
-            cont2 +=1;
-        }
-    }   
-    //redimensionamos la imagen para que siempre sea 800x400 y asi facilitar el dibujado de la linea
-    resize(imagen,imagen,Size(800,400));
-    //Texto que muestra el contador de personas entrantes y salientes
-    char str[200];
-        sprintf_s(str, "Total de entradas:" "%i",cont);
-		putText(imagen, str, Point2f(33,365), FONT_HERSHEY_COMPLEX_SMALL, 0.7,  Scalar(0,0,0, 0.5), 1);
-    char str2[200];
-        sprintf_s(str2, "Total de salidas:" "%i",cont2);
-		putText(imagen, str2, Point2f(33,385), FONT_HERSHEY_COMPLEX_SMALL, 0.7,  Scalar(0,0,255, 0.5), 1);   
-    //linea encargada del paso 
-    line(imagen, Point(0, 200) , Point(800,200), Scalar(0,0,255),2, 8, 0);
     imshow("People detector", imagen);
     waitKey(0);
     
